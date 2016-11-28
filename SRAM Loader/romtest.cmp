@@ -1,0 +1,14 @@
+	component romtest is
+		port (
+			clk_clk              : in  std_logic                    := 'X';             -- clk
+			reset_reset_n        : in  std_logic                    := 'X';             -- reset_n
+			rom_0_s1_address     : in  std_logic_vector(7 downto 0) := (others => 'X'); -- address
+			rom_0_s1_debugaccess : in  std_logic                    := 'X';             -- debugaccess
+			rom_0_s1_clken       : in  std_logic                    := 'X';             -- clken
+			rom_0_s1_chipselect  : in  std_logic                    := 'X';             -- chipselect
+			rom_0_s1_write       : in  std_logic                    := 'X';             -- write
+			rom_0_s1_readdata    : out std_logic_vector(7 downto 0);                    -- readdata
+			rom_0_s1_writedata   : in  std_logic_vector(7 downto 0) := (others => 'X')  -- writedata
+		);
+	end component romtest;
+

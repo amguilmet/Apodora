@@ -1,0 +1,42 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: ip-generate --project-directory="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/" --output-directory="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest/" --report-file="bsf:C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.bsf" --system-info=DEVICE_FAMILY="Cyclone II" --system-info=DEVICE=EP2C20F484C7 --system-info=DEVICE_SPEEDGRADE=7 --component-file="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.qsys"
+Progress: Loading SRAM Loader/romtest.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 13.0]
+Progress: Parameterizing module clk_0
+Progress: Adding rom_0 [altera_avalon_onchip_memory2 13.0.1.99.2]
+Progress: Parameterizing module rom_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: ip-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: ip-generate --project-directory="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/" --output-directory="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest/synthesis/" --file-set=QUARTUS_SYNTH --report-file="sopcinfo:C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.sopcinfo" --report-file="html:C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.html" --report-file="qip:C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest/synthesis/romtest.qip" --report-file="cmp:C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.cmp" --report-file=svd --system-info=DEVICE_FAMILY="Cyclone II" --system-info=DEVICE=EP2C20F484C7 --system-info=DEVICE_SPEEDGRADE=7 --component-file="C:/Users/amgui/Dropbox/Projects/FPGA/SRAM Loader/romtest.qsys" --language=VERILOG
+Progress: Loading SRAM Loader/romtest.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 13.0]
+Progress: Parameterizing module clk_0
+Progress: Adding rom_0 [altera_avalon_onchip_memory2 13.0.1.99.2]
+Progress: Parameterizing module rom_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: romtest: Generating romtest "romtest" for QUARTUS_SYNTH
+Info: pipeline_bridge_swap_transform: After transform: 2 modules, 2 connections
+Info: No custom instruction connections, skipping transform 
+Info: No Avalon connections, skipping transform 
+Info: merlin_translator_transform: After transform: 2 modules, 2 connections
+Info: reset_adaptation_transform: After transform: 3 modules, 4 connections
+Info: merlin_mm_transform: After transform: 3 modules, 4 connections
+Info: rom_0: Starting RTL generation for module 'romtest_rom_0'
+Info: rom_0:   Generation command is [exec C:/altera/quartus/bin/perl/bin/perl.exe -I C:/altera/quartus/common/ip/altera/common/perl/5.8.3 -I C:/altera/quartus/sopc_builder/bin/europa -I C:/altera/quartus/sopc_builder/bin/perl_lib -I C:/altera/quartus/sopc_builder/bin -I C:/altera/quartus/../ip/altera/sopc_builder_ip/common -I C:/altera/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/altera/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=romtest_rom_0 --dir=C:/Users/amgui/AppData/Local/Temp/alt7127_5940483780518191987.dir/0001_rom_0_gen/ --quartus_dir=C:/altera/quartus --verilog --config=C:/Users/amgui/AppData/Local/Temp/alt7127_5940483780518191987.dir/0001_rom_0_gen//romtest_rom_0_component_configuration.pl  --do_build_sim=0  ]
+Info: rom_0: Done RTL generation for module 'romtest_rom_0'
+Info: rom_0: "romtest" instantiated altera_avalon_onchip_memory2 "rom_0"
+Info: rst_controller: "romtest" instantiated altera_reset_controller "rst_controller"
+Info: romtest: Done romtest" with 3 modules, 6 files, 21759 bytes
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

@@ -1,0 +1,162 @@
+
+//Input modes
+
+`define TARGET_DATA 0
+`define TARGET_ADDRESS 1
+
+`define INPUT_TARGET SW[9]
+
+`define BUTTON_PREV KEY[3]
+`define BUTTON_RESET KEY[2]
+`define BUTTON_NEXT KEY[1]
+`define BUTTON_STORE KEY[0]
+
+`define LAST_PREV lastState[3]
+`define LAST_RESET lastState[2]
+`define LAST_NEXT lastState[1]
+`define LAST_STORE lastState[0]
+
+/*
+
+MODE SELECT - SW[9, 8]     
+			- 00 - LOAD SRAM
+				-WAIT FOR TRIGGER FROM HOST
+				-LATCH DATA
+			- 01 - DEBUG
+			- 10 - RUN
+			- 11 - HALT
+		
+LOAD SRAM - MODE = 00 -
+			 - KEY[3] - 
+			 - - 
+			 - SW[7, 0] 
+			
+
+			
+DEBUG - 11 - 
+			HEX - X
+			LEDR - | Current Address (x8) |
+			LEDG - | Current Data (x8) |
+			SW[7, 0] - CLOCK SPEED DIVIDER
+			KEY[3]   - HOLD
+			KEY[2] 		1- 
+			
+			
+
+SINGLE CLOCK - 00 -
+			HEX - CURRENT ADDR		
+		
+*/
+module SRAMLoader(SW, CLOCK_24);
+
+endmodule
+/*
+module EMU6502(CLOCK_50, SW, HEX0, HEX1, HEX2, HEX3, KEY, LEDG, LEDR, GPIO_0); 
+//, SRAM_ADDR, SRAM_CE_N, SRAM_DQ, SRAM_LB_N, SRAM_OE_N, SRAM_UB_N, SRAM_WE_N);
+	output [7:0] LEDG;		//
+	output [9:0] LEDR;		//
+	input [9:0] SW;
+	input [3:0] KEY;/////3=Previous, 2=Next, 1=Cycle Modes, 0=Save
+	input CLOCK_50;
+	output reg [15:0] GPIO_0;
+	wire inputMode; //Up=Address, Down=Data
+	assign inputMode = SW[9];	
+	reg [7:0] data;
+	reg [7:0] addr;
+	//reg [7:0] memory[255:0];
+	TestROM	memory (
+	.address_a ( addr ),
+	.address_b ( addr ),
+	.clock ( CLOCK_50 ),
+	.q_a ( data ),
+	.q_b ( data )
+	);
+
+	output [6:0] HEX0, HEX1, HEX2, HEX3; //Upper Byte = Addr, LowerByte = Data	
+	driver_Hex hexUpper(HEX3, HEX2, addr[7:0]);
+	driver_Hex hexLower(HEX1, HEX0, data[7:0]);
+	
+	assign LEDR[7:0] = SW[7:0];
+	assign LEDG[7:0] = addr;
+	
+	reg inReset=0;
+	
+	reg [3:0] lastState=0;
+	wire totalPressed;
+	assign totalPressed = ~`BUTTON_PREV || ~`BUTTON_RESET || ~`BUTTON_NEXT || ~`BUTTON_STORE;
+	//reg buttonsProcessed=0;
+	reg workingData=0;
+	
+	always @ (negedge KEY[3]) begin
+		case(inReset) 
+			0: begin //Reset Condition
+					addr=addr+1;
+					if (addr==255) inReset=1;
+				end
+			1: begin
+				if (~`BUTTON_PREV)
+					if (`LAST_PREV==0) begin
+						addrSelector=addrSelector-1;
+					//data=memory[addr][7:0];
+						`LAST_PREV<=1;
+					end			
+				end
+		endcase
+	end
+	
+	//reg addrSelector=0;
+	//assign addr=addrSelector;
+	/*
+	always @ (posedge CLOCK_50) begin
+		case(inReset) 
+		0: begin //Reset Condition
+			addrSelector=addrSelector+1;
+			if (addr==255) inReset=1;
+			end
+		1: begin
+			//Post-Reset
+			if (~`BUTTON_PREV)
+				if (`LAST_PREV==0) begin
+					addrSelector=addrSelector-1;
+					//data=memory[addr][7:0];
+					`LAST_PREV<=1;
+				end
+			if (~`BUTTON_RESET)
+				if (`LAST_RESET==0) begin
+					addrSelector=0;
+					//data=memory[addr][7:0];
+					`LAST_RESET<=1;
+				end
+			if (~`BUTTON_NEXT)
+				if (`LAST_NEXT==0) begin
+					addrSelector=addrSelector+1;
+					//data=memory[addr][7:0];
+					`LAST_NEXT<=1;
+				end
+			if (~`BUTTON_STORE)
+				if (`LAST_STORE==0) begin
+					//GPIO_0[7:0]<=addr[7:0];
+					//GPIO_0[15:8]<=data[7:0];
+					
+					//data<=SW[7:0];
+					//memory[addr][7:0]<=SW[7:0];
+					
+					`LAST_STORE<=1;
+				end
+			
+			if(`BUTTON_PREV) `LAST_PREV<=0;
+			if(`BUTTON_RESET) `LAST_RESET<=0;
+			if(`BUTTON_NEXT) `LAST_NEXT<=0;
+			if(`BUTTON_STORE) `LAST_STORE<=0;
+			
+			inReset=1;
+			end
+		default: begin
+		
+			inReset=0;		
+			end
+		endcase
+	end
+
+endmodule
+*/

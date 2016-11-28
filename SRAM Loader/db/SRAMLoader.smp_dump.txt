@@ -1,0 +1,8 @@
+
+State Machine - |SRAMLoader|s_loader
+Name s_loader.ls_Write2 s_loader.ls_Write s_loader.ls_Read2 s_loader.ls_Read s_loader.00001 
+s_loader.00001 0 0 0 0 0 
+s_loader.ls_Read 0 0 0 1 1 
+s_loader.ls_Read2 0 0 1 0 1 
+s_loader.ls_Write 0 1 0 0 1 
+s_loader.ls_Write2 1 0 0 0 1 

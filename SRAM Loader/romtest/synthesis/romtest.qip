@@ -1,0 +1,22 @@
+set_global_assignment -entity "romtest" -library "romtest" -name IP_TOOL_NAME "Qsys"
+set_global_assignment -entity "romtest" -library "romtest" -name IP_TOOL_VERSION "13.0sp1"
+set_global_assignment -entity "romtest" -library "romtest" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -library "romtest" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../romtest.sopcinfo"]
+set_instance_assignment -entity "romtest" -library "romtest" -name SLD_INFO "QSYS_NAME romtest HAS_SOPCINFO 1 GENERATION_ID 1479816400"
+set_global_assignment -library "romtest" -name MISC_FILE [file join $::quartus(qip_path) "../../romtest.cmp"]
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "romtest" -name MISC_FILE [file join $::quartus(qip_path) "../../romtest.qsys"]
+
+set_global_assignment -library "romtest" -name VERILOG_FILE [file join $::quartus(qip_path) "romtest.v"]
+set_global_assignment -library "romtest" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.v"]
+set_global_assignment -library "romtest" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_synchronizer.v"]
+set_global_assignment -library "romtest" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.sdc"]
+set_global_assignment -library "romtest" -name SOURCE_FILE [file join $::quartus(qip_path) "submodules/romtest_rom_0.hex"]
+set_global_assignment -library "romtest" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/romtest_rom_0.v"]
+
+set_global_assignment -entity "altera_reset_controller" -library "romtest" -name IP_TOOL_NAME "altera_reset_controller"
+set_global_assignment -entity "altera_reset_controller" -library "romtest" -name IP_TOOL_VERSION "13.0"
+set_global_assignment -entity "altera_reset_controller" -library "romtest" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "romtest_rom_0" -library "romtest" -name IP_TOOL_NAME "altera_avalon_onchip_memory2"
+set_global_assignment -entity "romtest_rom_0" -library "romtest" -name IP_TOOL_VERSION "13.0.1.99.2"
+set_global_assignment -entity "romtest_rom_0" -library "romtest" -name IP_TOOL_ENV "Qsys"
